@@ -60,32 +60,43 @@
 
         <section>
           <section>
-            <h3>Data: Detection Techniques</h3>
+            <h3>Input: Detection Techniques</h3>
             <ul class="left">
                 <li>
-                  Cytogenetic techniques, e.g. Array CGH
+                  Cytogenetic techniques, e.g. 
+                  <a href="#/2/1">Array CGH</a>
                 </li>
               
                 <li>
-                  Virtual karyotyping with SNP array
+                  Virtual karyotyping with 
+                  <a href="#/2/2">SNP array</a>
                 </li>
 
                 <li>
-                  Welcome to the digital world: <strong>Next-gen sequencing</strong>
+                  Welcome to the digital world: 
+                  <strong>
+                    <a href="#/2/3">Next-gen sequencing</a>
+                  </strong>
                 </li>
             </ul>
           </section>
           <section>
             <h2>ArrayCGH</h2>
-            <img src="resource/arrayCGH_Theisen_FULL.jpg"/>
+            <a href="#/2">
+              <img src="resource/arrayCGH_Theisen_FULL.jpg"/>
+            </a>
           </section>
           <section>
             <h2>SNP array</h2>
-            <img src="resource/CLL_ForWiki.jpg"/>
+            <a href="#/2">
+              <img src="resource/CLL_ForWiki.jpg"/>
+            </a>
           </section>
           <section>
             <h2>Next-gen sequencing</h2>
-            <img src="resource/proj106-cnv.jpg"/>
+            <a href="#/2">
+              <img src="resource/proj106-cnv.jpg"/>
+            </a>
           </section>
         </section>
 
@@ -107,8 +118,8 @@
                 the sequencing process
               </li>
               <li>
-                Solve the MAP problem: $\arg\max_{M} \sum_C P(C, R \mid M_0, M)$. Note
-                $C$ is unknown.
+                Solve the MAP problem: 
+                  $$\arg\max_{M} \sum_C P(C, R \mid M_0, M)$$
               </li>
               <li>
                 Denoising problem, $R$ is a 
@@ -157,7 +168,14 @@
                   Global parameters, especially $T=P(c_k|c_{k-1})$.
                 </li>
                 <li>
-                  <strong>Fuzzy break point</strong>
+                  <a href="#/5">
+                    <strong>Read $\neq$ Alignment</strong>
+                  </a>
+                </li>
+                <li>
+                  <a href="#/9">
+                    <strong>Fuzzy break point</strong>
+                  </a>
                 </li>
                 <li>
                   ...
@@ -165,15 +183,6 @@
               </ul>
             </li>
           <ul>
-        </section>
-
-        <section>
-          <h2>
-            Dectecting Copy Number Variation with <strong>Mated</strong> Short Reads
-          </h2>
-          <small class="right">
-            Medvedev, P. <i>et al.</i>
-          </small>
         </section>
 
         <section>
@@ -215,8 +224,8 @@
                 $$
                   \begin{aligned}
                     P(R \mid \theta, M_0) &amp;=  \sum_{C} P(R, C \mid \theta, M_0) \\
-                                     &amp;=  \sum_{C} P(R \mid C, \theta, M_0)P(C
-                                     \mid \theta, M_0)
+                                          &amp;=  \sum_{C} P(R \mid C, \theta, M_0)
+                                                  P(C \mid \theta, M_0)
                   \end{aligned}
                 $$
               </li>
@@ -279,16 +288,172 @@
               </li>
               <li>
                 Real data: basically it's 
-                <a href="#" class="navigate-down">good</a>
+                <a href="#/8/1">good</a>
               </li>
             </ul>
           </section>
           <section>
             <h2>Real Data Result</h2>
-            <img src="resource/em_result.png" />
+            <a href="#/4">
+              <img src="resource/em_result.png" />
+            </a>
           </section>
         </section>
 
+        <section>
+          <h2>
+            Dectecting Copy Number Variation with <strong>Mated</strong> Short Reads
+          </h2>
+          <small class="right">
+            Medvedev, P. <i>et al.</i>
+          </small>
+        </section>
+
+        <section>
+          <section>
+            <h2>Intuition: Orthogonal Information</h2>
+            <ul class="left">
+              <li>
+                A waste if simply compressing all read info into coverage
+              </li>
+              <li>
+                The reads directly carries the 
+                <a href="#/5/1">information</a> 
+                of break point
+              </li>
+              <li>
+                However the read info has even more noise (from 
+                <a href="#/5/2">HTS</a>
+                and alignment), e.g. $175k$ break points in chr1
+              </li>
+              <li>
+                Must find a way to combine coverage and read info
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>Reads & Break Point</h2>
+            <a href="#/5">
+              <img src="resource/reads_bp.png" />
+            </a>
+          </section>
+          <section>
+            <h2>Insertion Size Distribution</h2>
+            <a href="#/5">
+              <img src="resource/insertion_size.png">
+            </a>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Pipeline</h2>
+            <ol class="left">
+              <li>Mapping</li>
+              <li>
+                <a href="#/11/1">Partitioning the reference</a>
+              </li>
+              <li>
+                <a href="#/11/2">Calling potential break points</a>
+              </li>
+              <li>
+                <a href="#/11/1">Building the graph</a>
+              </li>
+              <li>
+                <a href="#/11/3">Solving min-cost flow problem</a>
+              </li>
+              <li>
+                Calling variants and predicting copy counts
+              </li>
+            </ol>
+          </section>
+
+          <section>
+            <h2>Donor Graph</h2>
+            <a href="#/11">
+              <img src="resource/graph_algo.png" />
+            </a>
+          </section>
+
+          <section>
+            <h2>Events</h2>
+            <a href="#/11">
+              <img src="resource/events.png" />
+            </a>
+          </section>
+
+          <section>
+            <h2>Min-cost Flow Problem Formulation</h2>
+            <ul class="left">
+              <li>
+                <a href="#/11/4">Why min-cost flow?</a>
+              </li>
+              <li>
+                $k_e$ observed coverage, $f_e$ latent coverage (flow).
+                $$
+                  P(k_e \mid f_e) = 
+                  \frac{e^{-\lambda f_e l_e}(\lambda f_e l_e)^{k_e}}{k_e !}
+                $$
+              </li>
+              <li>
+                The problem:
+                  $$
+                    \begin{align}
+                      \arg\max_{f} \prod_e P(k_e \mid f_e) &amp;= 
+                      \arg\min_{f} \sum_e \lambda_e f_e l_e - 
+                      k_e \ln(\lambda_e f_e l_e)
+                    \end{align}
+                  $$
+                  Subject to a set of linear constraint defined by the graph and
+                  the property of &ldquo;flow&rdquo;
+              </li>
+              <li>
+                Convex optimization problem and thus in P
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Why min-cost flow</h2>
+            <ul class="left">
+              <li>
+                The sample genome is a walk in the graph
+              </li>
+              <li>
+                However that's the same as genome assembly
+              </li>
+              <li>
+                Only need the traversal counts
+              </li> 
+              <li>
+                Classical problem could be solved in P, e.g. linear programming
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Result</h2>
+            <ul class="left">
+              <li>
+                <a href="#">Good precision</a>
+              </li>
+              <li>
+                The resolution is within tens of bases. 
+              </li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>Accuracy comparison</h2>
+            <img src="resource/precision_tab.png" />
+          </section>
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+        </section>
 			</div>
 
 		</div>
