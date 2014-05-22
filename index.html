@@ -146,7 +146,7 @@
                 M: closed form estimator (multinomial)
               </li>
               <li>
-                E: VE or BP, exact and rumtime in P
+                E: VE or BP, exact and runtime in P
               </li>
             </ul>
             </li>
@@ -221,7 +221,7 @@
                 $$
               </li>
               <li>
-                Impose sensible smoothness (regulation on model complexity)
+                Impose sensible smoothness (regularization on model complexity)
                 $$
                    P(C \mid \theta, M_0) = P(c_1) \prod_i P(c_i \mid c_{i-1})
                 $$
@@ -242,25 +242,50 @@
                 $$
                   \begin{aligned}
                     P(R \mid C, \theta, M_0) &amp;= \prod_i P(r_i \mid C, \theta, M_0) \\
-                                             &amp;= \prod_i \sum_{z_i} P(r_i,
-                                             z_i \mid C, \theta, M_0) \\
-                                             &amp;= \prod_i \sum_{z_i} P(r_i \mid
-                                             z_i, C, \theta, M_0)P(z_i \mid C,
-                                             \theta, M_0) \\
-                                             &amp;= \prod_i \sum_{z_i} P(r_i
-                                             \mid z_i, \theta, M_0) P(z_i \mid
-                                             C, M_0)
+                                             &amp;= \prod_i \sum_{z_i} 
+                                             P(r_i, z_i \mid C, \theta, M_0) \\
+                                             &amp;= \prod_i \sum_{z_i} 
+                                             P(r_i \mid z_i, C, \theta, M_0)
+                                             P(z_i \mid C, \theta, M_0) \\
+                                             &amp;= \prod_i \sum_{z_i} 
+                                             P(r_i \mid z_i, M_0)
+                                             P(z_i \mid C, M_0)
 
                   \end{aligned}
                 $$
               </li>
               <li>
-                The simple alignment model:
-                $$
-                  P(r_i \mid z_i, \theta, M_0) = \prod_j
-                $$
+                The simple alignment model $P(r_i \mid z_i, M_0)$: match contributes $1 - \epsilon$ and
+                dismatch contributes $\epsilon \mathbin{/} 3$
+              </li>
+              <li>
+                Based on the knowledge of sequencing experiments: 
+                $$P(z_i \mid C, M_0) = P(z_i \mid c_i, M_0) \propto c_i$$
+              </li>
+              <li>
+                Learning algorithm is trivial if we look at the structure of the
+                MRF in which $P$ factorized...
               </li>
             </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Result</h2>
+            <ul class="left">
+              <li>
+                Simulation: no one cares about...
+              </li>
+              <li>
+                Real data: basically it's 
+                <a href="#" class="navigate-down">good</a>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>Real Data Result</h2>
+            <img src="resource/em_result.png" />
           </section>
         </section>
 
